@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-
+using UnityEngine.UI;
 /*
 - lines array NUM -
 0: nose_to_leftEye / 1: nose_to_rightEye / 2: leftEye_to_leftEar / 3: rightEye_to_rightEar / 4: leftShoulder_to_rightShoulder / 
@@ -288,6 +288,8 @@ public class PoseSkeleton
         bool isNoseActivate = lines[0].activeSelf || lines[1].activeSelf;
         bool isLArmActivate = lines[10].activeSelf && lines[11].activeSelf;
         bool isRArmActivate = lines[12].activeSelf && lines[13].activeSelf;
+        bool isLLegActivate = lines[14].activeSelf && lines[15].activeSelf;
+        bool isRLegActivate = lines[16].activeSelf && lines[17].activeSelf;
 
         poseInfo[0] = false;
 
@@ -356,11 +358,98 @@ public class PoseSkeleton
         string debuglog = "";
         for (int i = 0; i < poseInfo.Count; i++)
             debuglog += (poseInfo[i] + " | ");
-        Debug.Log(debuglog);
+        //Debug.Log(debuglog);
+        //debugText.text = debuglog;
+
+        // 어깨 불균형 잡는 코드 임계값 20
+        float diff1 = Mathf.Abs(keypoints[5].transform.position.y - keypoints[6].transform.position.y);
+        bool testPose1 = lines[4].activeSelf && diff1 >= 20f;
+        //Debug.Log("어깨 y차이값 : " + diff1.ToString());
+        //Debug.Log("어깨 불균형 여부 : " + testPose1);
+
+        // 왼팔의 각도 계산
+        if (isLArmActivate)
+        {
+            Vector2 shoulderPos = keypoints[5].transform.position;
+            Vector2 elbowPos = keypoints[7].transform.position;
+            Vector2 wristPos = keypoints[9].transform.position;
+
+            Vector2 armDirection = wristPos - shoulderPos;
+            Vector2 forearmDirection = wristPos - elbowPos;
+
+            float angleRad = Mathf.Atan2(armDirection.y, armDirection.x) - Mathf.Atan2(forearmDirection.y, forearmDirection.x);
+            float leftArmAngle = angleRad * Mathf.Rad2Deg;
+
+            Debug.Log("왼팔 각도: " + leftArmAngle.ToString());
+        }
+        else
+        {
+            Debug.Log("왼팔 각도: Not Founded");
+        }
+
+        // 오른팔의 각도 계산
+        if (isRArmActivate)
+        {
+            Vector2 shoulderPos = keypoints[6].transform.position;
+            Vector2 elbowPos = keypoints[8].transform.position;
+            Vector2 wristPos = keypoints[10].transform.position;
+
+            Vector2 armDirection = wristPos - shoulderPos;
+            Vector2 forearmDirection = wristPos - elbowPos;
+
+            float angleRad = Mathf.Atan2(armDirection.y, armDirection.x) - Mathf.Atan2(forearmDirection.y, forearmDirection.x);
+            float rightArmAngle = angleRad * Mathf.Rad2Deg;
+            Debug.Log("오른팔 각도: " + rightArmAngle.ToString());
+        }
+        else
+        {
+            Debug.Log("오른팔 각도: Not Founded");
+        }
+
+        // 다리 일자로 걷고있는지 확인 
+        if (isLLegActivate)
+        {
+            Vector2 hipPos = keypoints[11].transform.position;
+            Vector2 kneePos = keypoints[13].transform.position;
+            Vector2 anklePos = keypoints[15].transform.position;
+
+            Vector2 thighDirection = kneePos - hipPos;
+            Vector2 legDirection = anklePos - kneePos;
+
+            float angleRad = Mathf.Atan2(legDirection.y, legDirection.x) - Mathf.Atan2(thighDirection.y, thighDirection.x);
+            float angleDeg = angleRad * Mathf.Rad2Deg;
+
+            Debug.Log("왼쪽다리 각도: " + angleDeg);
+        }
+        else
+        {
+
+        }
+
+        if (isRLegActivate)
+        {
+            Vector2 hipPos = keypoints[12].transform.position;
+            Vector2 kneePos = keypoints[14].transform.position;
+            Vector2 anklePos = keypoints[16].transform.position;
+
+            Vector2 thighDirection = kneePos - hipPos;
+            Vector2 legDirection = anklePos - kneePos;
+
+            float angleRad = Mathf.Atan2(legDirection.y, legDirection.x) - Mathf.Atan2(thighDirection.y, thighDirection.x);
+            float angleDeg = angleRad * Mathf.Rad2Deg;
+
+            Debug.Log("우측다리 각도: " + angleDeg);
+        }
+        else
+        {
+
+        }
+
     }
 
     public List<bool> GetMotionType()
     {
         return poseInfo;
     }
+
 }
