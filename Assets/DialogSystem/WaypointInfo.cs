@@ -8,8 +8,30 @@ public enum WaypointType
     MissionPoint
 }
 
+public enum MissionType
+{
+    LeftHand,
+    RightHand,
+    BothHands
+}
+
+[System.Serializable]
+public class MissionInfo
+{
+    public MissionType missionType;
+    public string missionName;
+    public string missionDescription;
+}
+
 public class WaypointInfo : MonoBehaviour
 {
     public WaypointType waypointType;
+
+    // MissionPoint를 선택했을 때 표시할 미션 정보
+    [SerializeField]
+    public MissionInfo mission;
+
     public string[] dialog;
+    public float dialogInterval;
+
 }

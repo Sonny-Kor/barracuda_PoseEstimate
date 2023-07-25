@@ -285,11 +285,11 @@ public class PoseEstimator : MonoBehaviour
         // Create a new videoTexture using the current video dimensions
         videoTexture = RenderTexture.GetTemporary(videoDims.x, videoDims.y, 24, RenderTextureFormat.ARGBHalf);
 
-        // Initialize the videoScreen
-        InitializeVideoScreen(videoDims.x, videoDims.y, useWebcam);
+        // Initialize the videoScreen  ->  비디오 스크린도 필요없어서 주석처리
+        //InitializeVideoScreen(videoDims.x, videoDims.y, useWebcam); 
 
-        // Adjust the camera based on the source video dimensions
-        InitializeCamera();
+        // Adjust the camera based on the source video dimensions -> 카메라 이동필요없어서 주석
+        //InitializeCamera();
 
         // Adjust the input dimensions to maintain the source aspect ratio
         aspectRatioScale = (float)videoTexture.width / videoTexture.height;

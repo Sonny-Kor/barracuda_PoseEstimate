@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private bool isMoving = false;
 
-    void Start()
+    void awake()
     {
         playerAgent = GetComponent<NavMeshAgent>();
     }

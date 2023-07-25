@@ -338,15 +338,6 @@ public class PoseSkeleton
             keypoints[2].transform.position.x > keypoints[6].transform.position.x - biasCross
             ? true : false;
 
-        //string txt1 = "";
-        //for (int i = 0; i < lines.Length; i++)
-        //    txt1 += (lines[i].activeSelf + " ");
-        //string txt2 = "";
-        //for (int i = 0; i < keypoints.Length; i++)
-        //    txt2 += ("("+keypoints[i].transform.position.x + ", "+ keypoints[i].transform.position.x + ") ");
-        
-        //Debug.Log("Get KeyPoint By ZMQ: " + txt2);
-        //Debug.Log("Get Skeleton By ZMQ: " + txt1);
 
 
         // No Motion Check
@@ -358,14 +349,11 @@ public class PoseSkeleton
         string debuglog = "";
         for (int i = 0; i < poseInfo.Count; i++)
             debuglog += (poseInfo[i] + " | ");
-        //Debug.Log(debuglog);
-        //debugText.text = debuglog;
+        
 
         // 어깨 불균형 잡는 코드 임계값 20
         float diff1 = Mathf.Abs(keypoints[5].transform.position.y - keypoints[6].transform.position.y);
         bool testPose1 = lines[4].activeSelf && diff1 >= 20f;
-        //Debug.Log("어깨 y차이값 : " + diff1.ToString());
-        //Debug.Log("어깨 불균형 여부 : " + testPose1);
 
         // 왼팔의 각도 계산
         if (isLArmActivate)
@@ -380,11 +368,11 @@ public class PoseSkeleton
             float angleRad = Mathf.Atan2(armDirection.y, armDirection.x) - Mathf.Atan2(forearmDirection.y, forearmDirection.x);
             float leftArmAngle = angleRad * Mathf.Rad2Deg;
 
-            Debug.Log("왼팔 각도: " + leftArmAngle.ToString());
+            //Debug.Log("왼팔 각도: " + leftArmAngle.ToString());
         }
         else
         {
-            Debug.Log("왼팔 각도: Not Founded");
+            //Debug.Log("왼팔 각도: Not Founded");
         }
 
         // 오른팔의 각도 계산
@@ -399,11 +387,11 @@ public class PoseSkeleton
 
             float angleRad = Mathf.Atan2(armDirection.y, armDirection.x) - Mathf.Atan2(forearmDirection.y, forearmDirection.x);
             float rightArmAngle = angleRad * Mathf.Rad2Deg;
-            Debug.Log("오른팔 각도: " + rightArmAngle.ToString());
+            //Debug.Log("오른팔 각도: " + rightArmAngle.ToString());
         }
         else
         {
-            Debug.Log("오른팔 각도: Not Founded");
+            //Debug.Log("오른팔 각도: Not Founded");
         }
 
         // 다리 일자로 걷고있는지 확인 
@@ -419,7 +407,7 @@ public class PoseSkeleton
             float angleRad = Mathf.Atan2(legDirection.y, legDirection.x) - Mathf.Atan2(thighDirection.y, thighDirection.x);
             float angleDeg = angleRad * Mathf.Rad2Deg;
 
-            Debug.Log("왼쪽다리 각도: " + angleDeg);
+            //Debug.Log("왼쪽다리 각도: " + angleDeg);
         }
         else
         {
@@ -438,7 +426,7 @@ public class PoseSkeleton
             float angleRad = Mathf.Atan2(legDirection.y, legDirection.x) - Mathf.Atan2(thighDirection.y, thighDirection.x);
             float angleDeg = angleRad * Mathf.Rad2Deg;
 
-            Debug.Log("우측다리 각도: " + angleDeg);
+            //Debug.Log("우측다리 각도: " + angleDeg);
         }
         else
         {
