@@ -30,6 +30,7 @@ public class WaypointInfo : MonoBehaviour
     // MissionPoint를 선택했을 때 표시할 미션 정보
     [SerializeField]
     public MissionInfo mission;
+    public bool isClear;
 
     public string[] dialog;
     public float dialogInterval;

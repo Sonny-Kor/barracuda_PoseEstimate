@@ -294,11 +294,11 @@ public class PoseSkeleton
         poseInfo[0] = false;
 
         // Raise Left Hand
-        poseInfo[1] = isLArmActivate && !isRArmActivate &&
+        poseInfo[1] = isLArmActivate  &&
                     keypoints[7].transform.position.y < keypoints[9].transform.position.y
                     ? true : false;
 
-        poseInfo[2] = !isLArmActivate && isRArmActivate &&
+        poseInfo[2] = !isLArmActivate &&
             keypoints[8].transform.position.y < keypoints[10].transform.position.y
             ? true : false;
 
@@ -315,9 +315,9 @@ public class PoseSkeleton
         bool RElbowPow = lines                  [13].activeSelf && isNoseActivate &&                                      // 오른 팔꿈치 치기 
             (keypoints[8].transform.position.x - biasElbow > keypoints[10].transform.position.x &&      // 오른 팔꿈치의 x좌표가 오른손의 x좌표보다 더 클경우
             keypoints[8].transform.position.y < keypoints[0].transform.position.y);                      // 머리 위로는 가지 않게
-        poseInfo[3] = LElbowPow && !RElbowPow;
-        poseInfo[4] = !LElbowPow && RElbowPow;
-        poseInfo[5] = LElbowPow && RElbowPow;
+        poseInfo[3] = LElbowPow && !RElbowPow; // 왼팔꿈치 치기
+        poseInfo[4] = !LElbowPow && RElbowPow; // 오른팔꿈치 치기
+        poseInfo[5] = LElbowPow && RElbowPow; // 양팔꿈치 치기
                                                 
 
         // cross

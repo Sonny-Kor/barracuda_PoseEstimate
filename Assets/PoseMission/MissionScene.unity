@@ -252,7 +252,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 410544381}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 25, y: 1, z: 25}
+  m_LocalPosition: {x: 25, y: 1, z: 22.47}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -287,7 +287,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 973977412}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 24.021936, y: 1.65, z: 29.832909}
+  m_LocalPosition: {x: 24.021936, y: 1.65, z: 26.97}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -311,6 +311,7 @@ MonoBehaviour:
     missionType: 0
     missionName: 
     missionDescription: 
+  isClear: 0
   dialog:
   - "\uC548\uB155 \uB09C \uBABD\uD2B8\uB860\uC774\uC57C"
   - "\uD568\uAED8 \uBCF4\uBB3C\uC744 \uCC3E\uC73C\uB7EC \uAC00\uBCF4\uC790"
@@ -501,7 +502,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1198303079}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 25.218061, y: 1.65, z: 40.667088}
+  m_LocalPosition: {x: 25.218061, y: 1.65, z: 41.69}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -525,6 +526,7 @@ MonoBehaviour:
     missionType: 1
     missionName: "\uC624\uB978\uC190 \uB4E4\uAE30"
     missionDescription: "\uC624\uB978\uC190\uC744 \uB4E4\uC5B4\uBCF4\uC790!"
+  isClear: 0
   dialog: []
   dialogInterval: 0
 --- !u!65 &1198303082
@@ -618,7 +620,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1260895790}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 24.79009, y: 1.65, z: 36.790638}
+  m_LocalPosition: {x: 24.79009, y: 1.65, z: 35.82}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -642,6 +644,7 @@ MonoBehaviour:
     missionType: 0
     missionName: 
     missionDescription: 
+  isClear: 0
   dialog:
   - "\uC798\uD588\uC5B4 ! \uACC4\uC18D \uAC00\uBCF4\uC790"
   dialogInterval: 1
@@ -939,7 +942,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1665127752}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 24.449907, y: 1.65, z: 33.709362}
+  m_LocalPosition: {x: 24.449907, y: 1.65, z: 31.56}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -963,6 +966,7 @@ MonoBehaviour:
     missionType: 0
     missionName: "\uC67C\uC190\uB4E4\uAE30"
     missionDescription: "\uC67C\uC190\uC744 \uB4E4\uC5B4\uBCF4\uC790"
+  isClear: 0
   dialog:
   - "\uBBF8\uC1581"
   dialogInterval: 0

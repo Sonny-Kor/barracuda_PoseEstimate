@@ -25,13 +25,13 @@ public class GameController : MonoBehaviour
         CollectWaypoints();                                       // Waypoint들의 Transform을 수집하여 waypoints 배열에 저장
         if (currentWaypointIndex == 0)
         {
+            playerMovement.MoveToWaypoint(waypoints[currentWaypointIndex].position);
             WaypointInfo currentWaypointInfo = waypoints[currentWaypointIndex].GetComponent<WaypointInfo>();
             if (currentWaypointInfo != null)
             {
                 dialogManager.ShowDialog(currentWaypointInfo.dialog, currentWaypointInfo.dialogInterval);
             }
-        }
-        SetNextWaypoint();                                        // 초기 Waypoint로 이동
+        }                                    
     }
 
     void CollectWaypoints()
@@ -44,7 +44,7 @@ public class GameController : MonoBehaviour
     }
     void Update()
     {
-        if (playerMovement.IsMoving())
+        if (playerMovement.IsMoving() && currentWaypointIndex < waypoints.Length)
         {
 
             float distanceToWaypoint = Vector3.Distance(player.transform.position, waypoints[currentWaypointIndex].position);
@@ -58,7 +58,7 @@ public class GameController : MonoBehaviour
                     // 현재 Waypoint에 저장된 대화(dialog)를 DialogManager를 통해 출력
                     dialogManager.ShowDialog(currentWaypointInfo.dialog, currentWaypointInfo.dialogInterval);
                     // 현재 Waypoint의 유형에 따라 동작을 처리
-                    if (currentWaypointInfo.waypointType == WaypointType.MissionPoint)
+                    if (currentWaypointInfo.waypointType == WaypointType.MissionPoint && !currentWaypointInfo.isClear)
                     {
                         playerMovement.StopMoving();
                         isMission = true;
@@ -72,13 +72,24 @@ public class GameController : MonoBehaviour
         }
         else if(isMission)
         {
-            WaypointInfo currentWaypointInfo = waypoints[currentWaypointIndex].GetComponent<WaypointInfo>();
-            ProcessMission(currentWaypointInfo);
+            if(currentWaypointIndex > 0)
+            {
+                WaypointInfo currentWaypointInfo = waypoints[currentWaypointIndex].GetComponent<WaypointInfo>();
+                if (ProcessMission(currentWaypointInfo))
+                {
+                    currentWaypointInfo.isClear = true;
+                    Debug.Log("성공");
+                    isMission = false;
+                    playerMovement.ResumeMoving();
+                    SetNextWaypoint();
+                }
+            }
         }
     }
 
     void SetNextWaypoint()
     {
+
         currentWaypointIndex++;                         // 다음 Waypoint의 인덱스로 이동
         if (currentWaypointIndex < waypoints.Length)    // 다음 Waypoint가 배열 범위 내에 있는지 확인
         {
@@ -95,10 +106,10 @@ public class GameController : MonoBehaviour
     {
        if(waypointInfo.waypointType == WaypointType.MissionPoint)
         {
-            for (int i = 0; i < myActType.Count; i++)
-            {
-                Debug.Log("Element " + i + ": " + myActType[i]);
-            }
+            //for (int i = 0; i < myActType.Count; i++)
+            //{
+            //    Debug.Log("Element " + i + ": " + myActType[i]);
+            //}
         }
 
         bool missionSuccess = false;
@@ -108,14 +119,17 @@ public class GameController : MonoBehaviour
             {
                 case MissionType.LeftHand:
                     missionSuccess = myActType[1];
+                    Debug.Log("왼손들기 진행중");
                     break;
 
                 case MissionType.RightHand:
                     missionSuccess = myActType[2];
+                    Debug.Log("오른손들기 진행중");
                     break;
 
                 case MissionType.BothHands:
                     missionSuccess = myActType[8];
+                    Debug.Log("양손들기 진행중");
                     break;
 
                 default:
@@ -123,12 +137,7 @@ public class GameController : MonoBehaviour
                     break;
             }
         }
-        if (missionSuccess)
-        {
-            isMission = false;
-            SetNextWaypoint();
-        }
-
+        
         return missionSuccess;
     }
     IEnumerator UpdateActType()
