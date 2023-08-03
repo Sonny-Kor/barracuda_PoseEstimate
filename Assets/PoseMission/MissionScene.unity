@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028326, g: 0.22571333, b: 0.30692202, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -429,12 +429,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   webcamDims: {x: 1280, y: 720}
-  webcamFPS: 15
+  webcamFPS: 60
   useWebcam: 1
   videoScreen: {fileID: 1293132010}
   posenetShader: {fileID: 7200000, guid: caf49f7951b95b740b0e4cb25c398cbe, type: 3}
   modelType: 0
-  useGPU: 1
+  useGPU: 0
   imageDims: {x: 256, y: 256}
   mobileNetModelAsset: {fileID: 5022602860645237092, guid: 7b71dd86868adb643b00370bf7f036cd, type: 3}
   resnetModelAsset: {fileID: 5022602860645237092, guid: 7f2c41e70c4abfd4bbf9a68ff2d147ce, type: 3}
